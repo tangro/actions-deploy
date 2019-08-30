@@ -1,6 +1,6 @@
 {
   "name": "actions-deploy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Deploy a static site contained in a zip file to the tangro-static server",
   "main": "lib/main.js",
