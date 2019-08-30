@@ -28,11 +28,11 @@ export async function deployZipFile({
   formData.append('repo', repo);
   formData.append('project', project);
   formData.append('branch', branch);
-  formData.append('file', fs.readFileSync(pathToZipFile));
+  formData.append('file', fs.createReadStream(pathToZipFile));
 
   return axios.post(url, formData, {
     headers: {
-      Authorization: `Basic ${btoa(escape(user) + ':' + escape(password))}`
+      Authorization: `Basic ${btoa(user + ':' + password)}`
     }
   });
 }
