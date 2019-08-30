@@ -1,10 +1,19 @@
-name: 'Node 12 Template Action'
-description: 'Get started with Node actions'
-author: 'GitHub'
+name: 'Tangro Deploy'
+description: 'Deploy a zip file containing a static site to the tangro static server'
+author: 'ankri'
 inputs:
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  zip-file:
+    description: 'The path to the zip-file'
+    required: true
+  deploy-url:
+    description: 'The URL of the API endpoint'
+    required: true
+  project:
+    description: 'The name of the project/step/site e.g. coverage or styleguide'
+    required: true
+  set-status:
+    description: 'When true set the status after the site has been deployed'
+    default: true
 runs:
   using: 'node12'
-  main: 'lib/main.js'
+  main: 'dist/index.js'
