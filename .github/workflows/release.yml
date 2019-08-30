@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: go to release branch
         run: git checkout -B $(node -p -e "require('./package.json').version")
+      - name: git pull
+        run: git pull
       - name: merge with master
         run: git merge origin/master --no-edit
       - name: npm install
