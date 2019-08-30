@@ -31,8 +31,12 @@ export async function deployZipFile({
   formData.append('file', fs.createReadStream(pathToZipFile));
 
   return axios.post(url, formData, {
+    auth: {
+      username: user,
+      password
+    },
     headers: {
-      Authorization: `Basic ${btoa(user + ':' + password)}`
+      ...formData.getHeaders()
     }
   });
 }
