@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import axios from 'axios';
 import btoa from 'btoa';
 import fs from 'fs';
+import FormData from 'form-data';
 
 interface ZipFileParameters {
   owner: string;
@@ -19,21 +20,19 @@ export async function deployZipFile({
   pathToZipFile
 }: ZipFileParameters) {
   const url = core.getInput('deploy-url');
-  const password = process.env.DEPLOY_PASSWORD;
-  const user = process.env.DEPLOY_USERNAME;
-
-  const zipFile = new Blob([fs.readFileSync(pathToZipFile)]);
+  const password = process.env.DEPLOY_PASSWORD as string;
+  const user = process.env.DEPLOY_USERNAME as string;
 
   const formData = new FormData();
   formData.append('owner', owner);
   formData.append('repo', repo);
   formData.append('project', project);
   formData.append('branch', branch);
-  formData.append('file', zipFile);
+  formData.append('file', fs.readFileSync(pathToZipFile));
 
   return axios.post(url, formData, {
     headers: {
-      Authorization: `Basic ${btoa(user + ':' + password)}`
+      Authorization: `Basic ${btoa(escape(user) + ':' + escape(password))}`
     }
   });
 }
