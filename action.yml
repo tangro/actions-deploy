@@ -3,7 +3,7 @@ description: 'Deploy a zip file containing a static site to the tangro static se
 author: 'ankri'
 inputs:
   context:
-    description: 'Choose the context for the deployment. Either "branch" or "sha"'
+    description: 'Choose the context for the deployment. Either "branch", "sha" or "auto"'
     default: 'branch'
   zip-file:
     description: 'The path to the zip-file'
