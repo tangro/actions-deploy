@@ -20,11 +20,22 @@ async function run() {
       );
     }
 
+    const deployContext = core.getInput('context');
+    if (deployContext !== 'branch' && deployContext !== 'sha') {
+      throw new Error(
+        `The deploy context has to be either "branch" or "sha". But was "${deployContext}"`
+      );
+    }
+
     const context = JSON.parse(
       process.env.GITHUB_CONTEXT || ''
     ) as GitHubContext;
     const [owner, repo] = context.repository.split('/');
-    const branch = (context.ref as string).replace('refs/heads/', '');
+    let branch = (context.ref as string).replace('refs/heads/', '');
+    if (deployContext === 'sha') {
+      branch = context.sha;
+    }
+
     const project = core.getInput('project');
 
     const pathToZipFile = core.getInput('zip-file');
