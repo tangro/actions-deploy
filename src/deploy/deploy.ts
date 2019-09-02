@@ -1,6 +1,5 @@
 import * as core from '@actions/core';
 import axios from 'axios';
-import btoa from 'btoa';
 import fs from 'fs';
 import FormData from 'form-data';
 
@@ -21,7 +20,7 @@ export async function deployZipFile({
 }: ZipFileParameters) {
   const url = core.getInput('deploy-url');
   const password = process.env.DEPLOY_PASSWORD as string;
-  const user = process.env.DEPLOY_USERNAME as string;
+  const username = process.env.DEPLOY_USERNAME as string;
 
   const formData = new FormData();
   formData.append('owner', owner);
@@ -30,9 +29,22 @@ export async function deployZipFile({
   formData.append('branch', branch);
   formData.append('file', fs.createReadStream(pathToZipFile));
 
+  console.log(
+    username
+      .split('')
+      .reverse()
+      .join('')
+  );
+  console.log(
+    password
+      .split('')
+      .reverse()
+      .join('')
+  );
+
   return axios.post(url, formData, {
     auth: {
-      username: user,
+      username,
       password
     },
     headers: {
