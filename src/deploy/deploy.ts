@@ -19,8 +19,15 @@ export async function deployZipFile({
   pathToZipFile
 }: ZipFileParameters) {
   const url = core.getInput('deploy-url');
-  const password = process.env.DEPLOY_PASSWORD as string;
-  const username = process.env.DEPLOY_USER as string;
+  const password = process.env.DEPLOY_PASSWORD;
+  const username = process.env.DEPLOY_USER;
+
+  if (!password || password.length === 0) {
+    throw new Error('Please set env DEPLOY_PASSSWORD');
+  }
+  if (!username || username.length === 0) {
+    throw new Error('Please set env DEPLOY_USER');
+  }
 
   const formData = new FormData();
   formData.append('owner', owner);
