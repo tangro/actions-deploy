@@ -46,9 +46,12 @@ async function run() {
       deployContextInput === 'auto' &&
       (branch === 'develop' || branch === 'master')
     ) {
-      deployContext = 'sha';
+      deployContext = context.sha;
+    } else {
+      deployContext = branch;
     }
 
+    core.debug(`Using branch: ${context.sha}`);
     const project = core.getInput('project');
 
     const pathToZipFile = core.getInput('zip-file');
@@ -64,13 +67,13 @@ async function run() {
       pathToZipFile
     });
 
-    const { url } = result.data;
-    const previousStatus = await getStatus({
-      context,
-      step: project
-    });
-
     if (core.getInput('set-status') === 'true') {
+      const { url } = result.data;
+      const previousStatus = await getStatus({
+        context,
+        step: project
+      });
+
       await setStatus({
         context,
         description: previousStatus ? previousStatus.description : undefined,
