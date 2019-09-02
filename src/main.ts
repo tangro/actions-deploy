@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import fs from 'fs';
 import { deployZipFile } from './deploy/deploy';
 import { GitHubContext } from './github/context';
-import { setStatus } from './github/status';
+import { setStatus, getStatus } from './github/status';
 
 async function run() {
   try {
@@ -25,6 +25,7 @@ async function run() {
     ) as GitHubContext;
     const [owner, repo] = context.repository.split('/');
     const branch = (context.ref as string).replace('refs/heads/', '');
+    const project = core.getInput('project');
 
     const pathToZipFile = core.getInput('zip-file');
     if (!fs.existsSync(pathToZipFile)) {
@@ -34,19 +35,24 @@ async function run() {
     const result = await deployZipFile({
       owner,
       repo,
-      project: core.getInput('project'),
+      project,
       branch,
       pathToZipFile
     });
 
     const { url } = result.data;
+    const previousStatus = await getStatus({
+      context,
+      step: project
+    });
 
     if (core.getInput('set-status') === 'true') {
       await setStatus({
         context,
+        description: previousStatus ? previousStatus.description : undefined,
         target_url: url,
         state: 'success',
-        step: core.getInput('project')
+        step: project
       });
     }
   } catch (error) {
