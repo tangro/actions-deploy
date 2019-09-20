@@ -90,6 +90,7 @@ async function run() {
       await createSuccessfulDeployment({
         context,
         url,
+        environment: project,
         description: project
       });
     }
