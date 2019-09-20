@@ -1,8 +1,12 @@
 import * as core from '@actions/core';
 import fs from 'fs';
 import { deployZipFile } from './deploy/deploy';
-import { GitHubContext } from './github/context';
-import { setStatus, getStatus } from './github/status';
+import {
+  GitHubContext,
+  setStatus,
+  getStatus,
+  createSuccessfulDeployment
+} from '@tangro/tangro-github-toolkit';
 
 async function run() {
   try {
@@ -33,7 +37,7 @@ async function run() {
 
     const context = JSON.parse(
       process.env.GITHUB_CONTEXT || ''
-    ) as GitHubContext;
+    ) as GitHubContext<{}>;
     const [owner, repo] = context.repository.split('/');
 
     const branch = (context.ref as string).replace('refs/heads/', '');
@@ -67,8 +71,8 @@ async function run() {
       pathToZipFile
     });
 
+    const { url } = result.data;
     if (core.getInput('set-status') === 'true') {
-      const { url } = result.data;
       const previousStatus = await getStatus({
         context,
         step: project
@@ -80,6 +84,13 @@ async function run() {
         target_url: url,
         state: 'success',
         step: project
+      });
+    }
+    if (core.getInput('create-deployment') === 'true') {
+      await createSuccessfulDeployment({
+        context,
+        url,
+        description: project
       });
     }
   } catch (error) {

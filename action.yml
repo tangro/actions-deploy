@@ -17,6 +17,9 @@ inputs:
   set-status:
     description: 'When true set the status after the site has been deployed'
     default: true
+  create-deployment:
+    description: 'When true the action also creates a deployment'
+    default: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
