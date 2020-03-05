@@ -23,7 +23,7 @@ export async function deployZipFile({
   const username = process.env.DEPLOY_USER;
 
   if (!password || password.length === 0) {
-    throw new Error('Please set env DEPLOY_PASSSWORD');
+    throw new Error('Please set env DEPLOY_PASSWORD');
   }
   if (!username || username.length === 0) {
     throw new Error('Please set env DEPLOY_USER');
