@@ -78,6 +78,14 @@ async function run() {
         step: project
       });
 
+      if (previousStatus) {
+        core.info(
+          `Previous status: ${previousStatus.state}. Description: ${previousStatus.description}`
+        );
+      } else {
+        core.info(`No previous status found`);
+      }
+
       await setStatus({
         context,
         description: previousStatus ? previousStatus.description : undefined,
