@@ -2,6 +2,10 @@
 
 An action to deploy a previously zipped static site to the tangro static file server. The action receives a static site contained in a zip file and automatically deploys the contents under `https://$url/$owner/$repo/$step/$context`
 
+# Choose a version
+
+Either use `latest` to always get the latest version of this action or the specific version to have a fixed version that shouldn't change over time.
+
 # Example workflow
 
 ```yml
@@ -14,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -32,7 +36,7 @@ jobs:
           cd lcov-report
           zip --quiet --recurse-paths ../../coverage.zip *
       - name: Deploy coverage
-        uses: tangro/actions-deploy@1.0.0
+        uses: tangro/actions-deploy@1.2.0
         with:
           context: auto
           zip-file: coverage.zip
