@@ -86,9 +86,13 @@ async function run() {
         core.info(`No previous status found`);
       }
 
+      const defaultStatus = '';
+
       await setStatus({
         context,
-        description: previousStatus ? previousStatus.description : undefined,
+        description: previousStatus
+          ? previousStatus.description ?? defaultStatus
+          : defaultStatus,
         target_url: url,
         state: previousStatus
           ? (previousStatus.state as 'success' | 'pending' | 'failure')
