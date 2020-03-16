@@ -91,7 +91,7 @@ async function run() {
       await setStatus({
         context,
         description: previousStatus
-          ? previousStatus.description ?? defaultStatus
+          ? previousStatus.description || defaultStatus
           : defaultStatus,
         target_url: url,
         state: previousStatus
