@@ -36,7 +36,7 @@ jobs:
           cd lcov-report
           zip --quiet --recurse-paths ../../coverage.zip *
       - name: Deploy coverage
-        uses: tangro/actions-deploy@1.2.0
+        uses: tangro/actions-deploy@1.2.2
         with:
           context: auto
           zip-file: coverage.zip
