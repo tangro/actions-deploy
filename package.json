@@ -19,7 +19,7 @@
   "author": "ankri",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.2.4",
+    "@actions/core": "1.2.6",
     "@tangro/tangro-github-toolkit": "1.0.2",
     "axios": "0.19.2",
     "btoa": "1.2.1",
