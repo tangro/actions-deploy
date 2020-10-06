@@ -4,7 +4,7 @@ An action to deploy a previously zipped static site to the tangro static file se
 
 # Choose a version
 
-You can use a specific `version` of this action. The latest published version is `v1.2.4`. You can also use `latest` to always get the latest version.
+You can use a specific `version` of this action. The latest published version is `v1.2.5`. You can also use `latest` to always get the latest version.
 
 # Example workflow
 
@@ -36,7 +36,7 @@ jobs:
           cd lcov-report
           zip --quiet --recurse-paths ../../coverage.zip *
       - name: Deploy coverage
-        uses: tangro/actions-deploy@v1.2.4
+        uses: tangro/actions-deploy@v1.2.5
         with:
           context: auto
           zip-file: coverage.zip
