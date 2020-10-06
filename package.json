@@ -1,6 +1,6 @@
 {
   "name": "actions-deploy",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": true,
   "description": "Deploy a static site contained in a zip file to the tangro-static server",
   "main": "lib/main.js",
@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "1.2.6",
-    "@tangro/tangro-github-toolkit": "1.0.2",
+    "@tangro/tangro-github-toolkit": "1.0.3",
     "axios": "0.20.0",
     "btoa": "1.2.1",
     "form-data": "3.0.0"
