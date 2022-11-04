@@ -4,7 +4,7 @@ An action to deploy a previously zipped static site to the tangro static file se
 
 # Choose a version
 
-You can use a specific `version` of this action. The latest published version is `v1.2.11`. You can also use `latest` to always get the latest version.
+You can use a specific `version` of this action. The latest published version is `v1.2.12`. You can also use `latest` to always get the latest version.
 
 # Example workflow
 
@@ -36,7 +36,7 @@ jobs:
           cd lcov-report
           zip --quiet --recurse-paths ../../coverage.zip *
       - name: Deploy coverage
-        uses: tangro/actions-deploy@v1.2.11
+        uses: tangro/actions-deploy@v1.2.12
         with:
           context: auto
           zip-file: coverage.zip
@@ -79,6 +79,10 @@ You can have:
 - `project`: The project/step you want to deploy. To have several static sites per repo. Because the URL structure is `https://$URL/$owner/$repo/$project/$context`. In our example it is the `coverage`. It could also for example be the `styleguide` or the `build` (if the built page is a static site)
 - `context`: Either `'branch'`, `'sha'` or `'auto'`. When using `'branch'` the branch name will be used for the context. When you push into an existing branch the old deploy will be replaced with the new one. When using `'sha'` every deploy will be unique since it uses the commit `SHA`. By using `'auto'` it will deploy a new site when a push is made into `develop` or `master` and otherwise will use the branch name. Default is `'branch'`
 - `set-status`: Set to `false` to do not set a status to the commit. Default `true`
+
+## Output variables
+
+- `deployed-url`: The URL for the newly deployed site
 
 ## Environment variables
 
