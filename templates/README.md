@@ -80,6 +80,10 @@ You can have:
 - `context`: Either `'branch'`, `'sha'` or `'auto'`. When using `'branch'` the branch name will be used for the context. When you push into an existing branch the old deploy will be replaced with the new one. When using `'sha'` every deploy will be unique since it uses the commit `SHA`. By using `'auto'` it will deploy a new site when a push is made into `develop` or `master` and otherwise will use the branch name. Default is `'branch'`
 - `set-status`: Set to `false` to do not set a status to the commit. Default `true`
 
+## Output variables
+
+- `deployed-url`: The URL for the newly deployed site
+
 ## Environment variables
 
 We need several environment variables to be able to deploy.
