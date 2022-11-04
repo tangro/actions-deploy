@@ -107,6 +107,7 @@ async function run() {
         environment: project,
         description: project
       });
+      core.setOutput('deployed-url', url);
     }
   } catch (error) {
     core.setFailed((error as any)?.message ?? 'ERROR happened');
