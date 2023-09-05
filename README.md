@@ -4,7 +4,7 @@ An action to deploy a previously zipped static site to the tangro static file se
 
 # Choose a version
 
-You can use a specific `version` of this action. The latest published version is `v1.2.15`. You can also use `latest` to always get the latest version.
+You can use a specific `version` of this action. The latest published version is `v1.2.16`. You can also use `latest` to always get the latest version.
 
 # Example workflow
 
@@ -18,9 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Use Node.js 16.x
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: 16.x
       - name: Run npm install
@@ -36,7 +36,7 @@ jobs:
           cd lcov-report
           zip --quiet --recurse-paths ../../coverage.zip *
       - name: Deploy coverage
-        uses: tangro/actions-deploy@v1.2.15
+        uses: tangro/actions-deploy@v1.2.16
         with:
           context: auto
           zip-file: coverage.zip
