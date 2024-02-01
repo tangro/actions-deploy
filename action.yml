@@ -25,5 +25,5 @@ outputs:
   deployed-url:
     description: The URL for the newly deployed static site
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
