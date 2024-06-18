@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/btoa": "1.2.5",
     "@types/form-data": "2.5.0",
-    "@types/node": "20.14.2",
+    "@types/node": "20.14.4",
     "ejs": "3.1.10",
     "rimraf": "5.0.7",
     "typescript": "5.4.5"
