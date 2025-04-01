@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "1.11.1",
-    "@tangro/tangro-github-toolkit": "1.0.9",
+    "@tangro/tangro-github-toolkit": "1.0.10",
     "@vercel/ncc": "0.38.3",
     "axios": "1.8.4",
     "btoa": "1.2.1",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/btoa": "1.2.5",
     "@types/form-data": "2.5.2",
-    "@types/node": "22.13.13",
+    "@types/node": "22.13.15",
     "ejs": "3.1.10",
     "rimraf": "6.0.1",
     "typescript": "5.8.2"
