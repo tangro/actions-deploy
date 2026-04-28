@@ -23,10 +23,10 @@
   "author": "ankri",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "3.0.0",
+    "@actions/core": "3.0.1",
     "@tangro/tangro-github-toolkit": "1.0.10",
     "@vercel/ncc": "0.38.4",
-    "axios": "1.15.1",
+    "axios": "1.15.2",
     "btoa": "1.2.1",
     "form-data": "4.0.5"
   },
